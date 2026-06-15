@@ -109,8 +109,8 @@ def _format_timestamp(value: Any) -> str:
 
 
 def _format_failure(describe: dict[str, Any]) -> str:
-    reason = _first_text(describe, "failureReason", "failure", "failureMessage")
-    message = _first_text(describe, "error", "message")
+    reason = _first_text(describe, "failureReason", "failure")
+    message = _first_text(describe, "failureMessage", "error", "message")
 
     if reason and message and message != reason:
         return f"{reason}: {message}"
