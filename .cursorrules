@@ -1,0 +1,10 @@
+# dx-suite Cursor rules
+
+- Treat this as a Python 3.10+ CLI project using a `src/` package layout.
+- Use Typer for command parsing and Rich for human-readable terminal output.
+- Keep `dxpy` calls behind small helper functions so commands can be tested
+  without live DNAnexus credentials.
+- Add focused pytest coverage for new commands, including command-line behavior
+  via `typer.testing.CliRunner`.
+- Do not hard-code DNAnexus tokens, project IDs, or user-specific paths.
+- Prefer JSON output flags for automation-friendly command results.
