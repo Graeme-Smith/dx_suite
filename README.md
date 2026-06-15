@@ -17,6 +17,22 @@ pip install -e ".[dev]"
 pytest
 ```
 
+Or use the helper script to create a local virtual environment, install the
+development dependencies, and create a starter `.env` file:
+
+```bash
+scripts/setup-env.sh
+source .venv/bin/activate
+```
+
+Local environment values are kept in `.env`, which is ignored by git. Start
+from the committed example file:
+
+```bash
+cp .env.example .env
+source scripts/load-env.sh
+```
+
 ## CLI
 
 The package installs a `dx-suite` command powered by
@@ -36,6 +52,14 @@ Limit results or scope the lookup to a project:
 
 ```bash
 dx-suite failed-jobs --project project-xxxx --limit 10
+```
+
+The same defaults can come from environment variables, including values loaded
+from `.env`:
+
+```bash
+DX_PROJECT=project-xxxx
+DX_SUITE_FAILED_JOBS_LIMIT=10
 ```
 
 Emit JSON for scripts:

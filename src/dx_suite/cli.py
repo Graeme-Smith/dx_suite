@@ -40,6 +40,7 @@ def failed_jobs(
         typer.Option(
             "--project",
             "-p",
+            envvar="DX_PROJECT",
             help="Restrict results to a DNAnexus project ID.",
         ),
     ] = None,
@@ -48,6 +49,7 @@ def failed_jobs(
         typer.Option(
             "--limit",
             "-n",
+            envvar="DX_SUITE_FAILED_JOBS_LIMIT",
             min=1,
             help="Maximum number of failed jobs to return.",
         ),

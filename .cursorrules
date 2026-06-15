@@ -7,4 +7,6 @@
 - Add focused pytest coverage for new commands, including command-line behavior
   via `typer.testing.CliRunner`.
 - Do not hard-code DNAnexus tokens, project IDs, or user-specific paths.
+- Keep populated `.env` files out of git; update `.env.example` for new
+  non-secret configuration keys.
 - Prefer JSON output flags for automation-friendly command results.

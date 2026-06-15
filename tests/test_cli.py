@@ -52,6 +52,28 @@ def test_failed_jobs_outputs_empty_message(monkeypatch):
     assert "No failed jobs found." in result.stdout
 
 
+def test_failed_jobs_reads_defaults_from_environment(monkeypatch):
+    calls = []
+
+    def fake_get_failed_jobs(project, limit):
+        calls.append({"project": project, "limit": limit})
+        return []
+
+    monkeypatch.setattr("dx_suite.cli.get_failed_jobs", fake_get_failed_jobs)
+
+    result = runner.invoke(
+        app,
+        ["failed-jobs"],
+        env={
+            "DX_PROJECT": "project-env",
+            "DX_SUITE_FAILED_JOBS_LIMIT": "7",
+        },
+    )
+
+    assert result.exit_code == 0
+    assert calls == [{"project": "project-env", "limit": 7}]
+
+
 def test_failed_jobs_reports_lookup_errors(monkeypatch):
     def fake_get_failed_jobs(project, limit):
         raise RuntimeError("not authenticated")
