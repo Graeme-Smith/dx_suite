@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dx-suite"
+version = "0.1.0"
+description = "Useful DNAnexus command line utilities."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "dxpy",
+    "rich",
+    "typer",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[project.scripts]
+dx-suite = "dx_suite.cli:app"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
